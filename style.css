@@ -1,0 +1,73 @@
+.hamburger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; 
+  background: transparent;
+  border: none;
+  padding: 8px 10px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.hamburger .bar {
+  display: inline-block;
+  width: 3px;
+  height: 18px;
+  background: var(--white, #fff);
+  border-radius: 3px;
+  transition: transform .28s cubic-bezier(.2,.9,.3,1), background .2s, opacity .2s;
+  transform-origin: center center;
+  opacity: 1;
+}
+
+.hamburger .bar1 { /* ...no extra rules needed... */ }
+.hamburger .bar2 { /* ... */ }
+.hamburger .bar3 { /* ... */ }
+
+.hamburger:hover .bar { background: var(--accent, #e22b2b); }
+.hamburger:hover .bar1 { transform: translateY(-2px) rotate(-6deg) scaleY(1.03); }
+.hamburger:hover .bar2 { transform: scaleY(0.98) translateY(0); }
+.hamburger:hover .bar3 { transform: translateY(2px) rotate(6deg) scaleY(1.03); }
+
+.hamburger-label {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--muted, #9aa0a6);
+  margin-left: 6px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all .22s ease;
+  pointer-events: none;
+}
+.hamburger:hover .hamburger-label {
+  opacity: 1;
+  transform: translateY(0);
+  color: var(--accent, #e22b2b);
+}
+
+/* Override hamburger for theme: white bars, red hover */
+.hamburger .bar {
+  background: var(--white, #fff);
+  transition: transform .28s cubic-bezier(.2,.9,.3,1), background .2s, opacity .2s;
+}
+.hamburger:hover .bar { background: var(--accent, #e22b2b); }
+
+/* Label changes on hover */
+.hamburger:hover .hamburger-label { color: var(--accent, #e22b2b); }
+
+/* Menu items use theme */
+.hamburger-menu .menu-item {
+  color: var(--white);
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+}
+.hamburger-menu .menu-item:hover {
+  background: linear-gradient(90deg, rgba(226,43,43,0.12), rgba(226,43,43,0.06));
+  color: var(--white);
+}
+
+/* Make sure small ghost btns are visible on dark background if style.css overrides */
+.btn.ghost { color: var(--white); border-color: rgba(226,43,43,0.12); }
+
+/* Add subtle glow on focus for accessibility */
+.hamburger:focus, .hamburger .bar:focus, .btn:focus { outline: 2px solid rgba(226,43,43,0.12); outline-offset: 2px; }

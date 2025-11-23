@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shop Technology</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <!-- simple Linux penguin-ish SVG as icon -->
+        <svg class="brand-icon" viewBox="0 0 64 64" aria-hidden>
+          <circle cx="32" cy="32" r="30" fill="#111"/>
+            <image href="https://th.bing.com/th/id/R.193536589a1e578edbd6d23931cceed8?rik=t5zbAU8L0ih%2bVA&riu=http%3a%2f%2fpluspng.com%2fimg-png%2flinux-logo-png-linux-png-logo-free-img-594x720.png&ehk=q%2bklodYm9vrE3pB0rnO0XBvtBxqLnLMtzKqtOdyxkpM%3d&risl=&pid=ImgRaw&r=0" x="12" y="8" height="48px" width="40px"/>
+          <circle cx="26" cy="30" r="2" fill="#111"/>
+          <circle cx="38" cy="30" r="2" fill="#111"/>
+        </svg>
+        <div class="brand-name">
+          <span class="brand-title">Shop</span>
+          <span class="brand-sub">Technology</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#products">Sản phẩm</a>
+        <a href="#contact">Hỗ trợ</a>
+      </nav>
+
+      <!-- Hamburger toggle for Add Product -->
+      <button class="hamburger" id="hamburger" aria-label="Thêm sản phẩm">
+        <span class="bar bar1"></span>
+        <span class="bar bar2"></span>
+        <span class="bar bar3"></span>
+        <span class="hamburger-label">Tùy chọn thêm</span>
+      </button>
+
+      <!-- Dropdown menu shown when clicking the hamburger -->
+      <div class="hamburger-menu" id="hamburgerMenu" aria-hidden="true">
+        <a class="menu-item" id="menuAccount" href="#contact">Tài khoản</a>
+        <button class="menu-item menu-add" id="menuAdd" type="button">Thêm sản phẩm</button>
+        <!-- NEW: Delete product option -->
+        <button class="menu-item menu-delete" id="menuDelete" type="button">Xóa sản phẩm</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-grid">
+    <section id="products" class="products">
+      <h1 class="page-title">SẢN PHẨM NỔI BẬT</h1>
+      <p class="lead">Thiết bị và phụ kiện</p>
+
+      <div class="product-grid" id="productGrid">
+        <!-- product card (static - only buy + add to cart) -->
+        <article class="card" data-id="static-0">
+          <div class="card-image">
+            <img src="https://www.flatpanelshd.com/pictures/raspberrypi5_1_large.jpg" alt="raspberrypi 5">
+          </div>
+          <a class="buy-btn-full" href="#!">🛒 Mua ngay</a>
+          <div class="card-body">
+            <h3 class="card-title">Raspberry Pi 5</h3>
+            <p class="card-price">₫1.890.000</p>
+            <p class="card-desc">Mạch máy tính Raspberry Pi 5.</p>
+            <div class="user-controls">
+              <button class="btn-small add-cart btn-cart" type="button">Thêm giỏ</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="static-1">
+          <div class="card-image">
+            <img src="https://www.eff.org/files/2023/03/09/fiipper_zero.png" alt="hacker">
+          </div>
+          <a class="buy-btn-full" href="#!">🛒 Mua ngay</a>
+          <div class="card-body">
+            <h3 class="card-title">Flipper Zero</h3>
+            <p class="card-price">₫5.585.000</p>
+            <p class="card-desc">Dùng để troll người khác =D.</p>
+            <div class="user-controls">
+              <button class="btn-small add-cart btn-cart" type="button">Thêm giỏ</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="card" data-id="static-2">
+          <div class="card-image">
+            <img src="https://th.bing.com/th/id/OIP.WiA3kMbUY_x0fPIAfZSKigHaFS?w=252&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="cho lập trình viên">
+          </div>
+          <a class="buy-btn-full" href="#!">🛒 Mua ngay</a>
+          <div class="card-body">
+            <h3 class="card-title">Mạch ESP32</h3>
+            <p class="card-price">₫170.000</p>    
+            <p class="card-desc">Dùng lập trình vui vui.</p>
+            <div class="user-controls">
+              <button class="btn-small add-cart btn-cart" type="button">Thêm giỏ</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+
+    <aside id="addPanel" class="admin-panel panel-hidden" aria-hidden="true">
+      <div class="panel-inner">
+        <button class="panel-close" id="panelClose" aria-label="Đóng">✕</button>
+        <h2>Thêm sản phẩm</h2>
+        <p class="muted">Nhập thông tin rồi bấm "Thêm sản phẩm" — sản phẩm sẽ hiển thị ngay ở bên trái.</p>
+
+        <form class="product-form" id="productForm" action="#" method="post">
+          <label>Tiêu đề sản phẩm
+            <input id="pTitle" type="text" name="title" placeholder="Ví dụ: Chuột Gaming X1" required>
+          </label>
+
+          <label>Giá (VNĐ)
+            <input id="pPrice" type="number" name="price" placeholder="1250000" required>
+          </label>
+
+          <label>URL ảnh (link)
+            <input id="pImage" type="url" name="image" placeholder="https://...jpg">
+          </label>
+
+          <!-- NEW: image preview + controls in form -->
+          <div class="image-preview-wrap">
+            <div class="image-frame" id="imageFrame" aria-hidden="true">
+              <img id="pPreview" src="" alt="Preview">
+            </div>
+
+            <div class="frame-controls">
+              <label class="control">
+                Fit
+                <select id="pFit" aria-label="Fit">
+                  <option value="cover">Cover</option>
+                  <option value="contain">Contain</option>
+                  <option value="fill">Fill</option>
+                </select>
+              </label>
+
+              <label class="control">
+                Align X
+                <select id="pAlignX" aria-label="Align X">
+                  <option value="center">Center</option>
+                  <option value="left">Left</option>
+                  <option value="right">Right</option>
+                </select>
+              </label>
+
+              <label class="control">
+                Align Y
+                <select id="pAlignY" aria-label="Align Y">
+                  <option value="center">Center</option>
+                  <option value="top">Top</option>
+                  <option value="bottom">Bottom</option>
+                </select>
+              </label>
+
+              <label class="control">
+                Zoom
+                <div style="display:flex;align-items:center;gap:8px">
+                  <input id="pZoom" type="range" min="0.5" max="2" step="0.01" value="1" aria-label="Zoom">
+                  <span id="pZoomValue" class="zoom-value">100%</span>
+                </div>
+              </label>
+
+              <button type="button" id="resetPreview" class="btn ghost">Reset preview</button>
+            </div>
+          </div>
+
+          <label>Mô tả
+            <textarea id="pDesc" name="desc" placeholder="Mô tả ngắn cho sản phẩm (tuỳ chọn)" rows="3"></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="btn primary" id="addBtn">Thêm sản phẩm</button>
+            <button type="button" class="btn ghost" id="resetForm">Xóa</button>
+            <!-- NEW: cancel edit button -->
+            <button type="button" class="btn ghost" id="cancelEdit" style="display:none">Hủy sửa</button>
+          </div>
+        </form>
+      </div> <!-- end .panel-inner -->
+    </aside> <!-- end #addPanel -->
+  </main> <!-- end .main-grid -->
+
+  <!-- NEW: delete confirmation bar -->
+  <div id="deleteBar" class="delete-bar hidden" aria-hidden="true">
+    <div class="delete-info">Đã chọn <span id="deleteCount">0</span> mục</div>
+    <div class="delete-actions">
+      <button id="confirmDelete" class="btn primary">Xác nhận xóa</button>
+      <button id="cancelDelete" class="btn btn-light">Hủy</button>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© 2025 Shop Technology</div>
+      <div class="footer-links">
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
