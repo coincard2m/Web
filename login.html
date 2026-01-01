@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Đăng nhập — Shop Technology</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    :root {
+      /* 1. THAY LINK ẢNH NỀN CỦA BẠN TẠI ĐÂY */
+      --bg-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop');
+      
+      --accent: #e22b2b;
+      --accent-dark: #8b1a1a;
+      
+      /* Font cho nội dung (Email, Mật khẩu, Nút bấm) */
+      --font-modern: 'Inter', sans-serif;
+      /* Font "Cũ" cho chữ Technology (Serif) */
+      --font-old-style: "Arial";
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #000;
+      overflow: hidden;
+      position: relative;
+      /* Font chung là Sans-serif */
+      font-family: var(--font-modern);
+    }
+
+    /* LỚP NỀN ĐỎ PHA ĐEN KÈM ẢNH */
+    .bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at center, rgba(226, 43, 43, 0.3) 0%, rgba(6, 6, 7, 0.95) 85%),
+        var(--bg-image);
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: multiply; /* Trộn màu đỏ đen vào ảnh */
+      z-index: -1;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 400px;
+      background: rgba(17, 18, 20, 0.9);
+      padding: 40px;
+      border-radius: 28px;
+      border: 1px solid rgba(226, 43, 43, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(15px);
+      z-index: 10;
+    }
+
+    /* --- LOGO: CHỖ NÀY LÀ QUAN TRỌNG NHẤT --- */
+    .brand-header { text-align: center; margin-bottom: 30px; }
+    
+    .brand-title { 
+      font-family: var(--font-modern); /* Chữ Shop hiện đại */
+      font-weight: 800;
+      font-size: 26px;
+      color: #fff;
+    }
+
+    .brand-sub { 
+      font-family: var(--font-old-style) !important;
+      font-size: 26px;
+      color: #fff;
+      margin-left: 4px;
+    }
+
+    /* --- NỘI DUNG NHẬP LIỆU: DÙNG SANS-SERIF --- */
+    .auth-tabs {
+      display: flex;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 5px;
+      border-radius: 14px;
+      margin-bottom: 25px;
+    }
+    .auth-tabs button {
+      flex: 1; border: none; background: transparent; color: #888;
+      padding: 12px; font-weight: 700; cursor: pointer; border-radius: 10px;
+      font-family: var(--font-modern); /* Sans-serif */
+      transition: 0.3s;
+    }
+    .auth-tabs button.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group label { 
+      display: block; font-size: 13px; color: #9aa0a6; 
+      margin-bottom: 8px; font-weight: 600;
+      font-family: var(--font-modern); /* Sans-serif */
+    }
+    .form-group input {
+      width: 100%; background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 14px 16px; border-radius: 12px; color: white; 
+      font-family: var(--font-modern); /* Sans-serif */
+      font-size: 15px; transition: 0.3s;
+    }
+    .form-group input:focus {
+      border-color: var(--accent);
+      background: rgba(226, 43, 43, 0.05);
+      outline: none;
+    }
+
+    .btn-submit {
+      width: 100%; padding: 16px; border-radius: 14px; border: none;
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      color: white; font-weight: 800; font-size: 15px; cursor: pointer;
+      font-family: var(--font-modern); /* Sans-serif */
+      transition: 0.3s;
+    }
+
+    .back-home { 
+      display: block; text-align: center; margin-top: 25px; color: #666; 
+      text-decoration: none; font-size: 14px;
+      font-family: var(--font-modern); /* Sans-serif */
+    }
+
+    #msgBox:not(:empty) { margin-bottom: 20px; font-family: var(--font-modern); }
+  </style>
+</head>
+<body>
+
+  <div class="bg-overlay"></div>
+
+  <div class="auth-card">
+    <div class="brand-header">
+      <div class="brand" style="justify-content: center;">
+        <span class="brand-title">Shop</span>
+        <span class="brand-sub">Technology</span>
+      </div>
+      <p style="color: #666; font-size: 13px; margin-top: 10px; font-family: var(--font-modern);">Đăng nhập để tiếp tục</p>
+    </div>
+
+    <div class="auth-tabs">
+      <button id="tabLogin" class="active">ĐĂNG NHẬP</button>
+      <button id="tabRegister">ĐĂNG KÝ</button>
+    </div>
+
+    <div id="msgBox"></div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label>Địa chỉ Email</label>
+        <input id="logEmail" type="email" placeholder="email@example.com" required>
+      </div>
+      <div class="form-group">
+        <label>Mật khẩu</label>
+        <input id="logPassword" type="password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn-submit">XÁC NHẬN</button>
+    </form>
+
+    <form id="registerForm" style="display:none">
+      <div class="form-group">
+        <label>Họ và tên</label>
+        <input id="regName" type="text" placeholder="Nguyễn Văn A" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input id="regEmail" type="email" placeholder="email@example.com" required>
+      </div>
+      <div class="form-group">
+        <label>Mật khẩu</label>
+        <input id="regPassword" type="password" placeholder="Tối thiểu 6 ký tự" required>
+      </div>
+      <div class="form-group">
+        <label>Xác nhận lại</label>
+        <input id="regPassword2" type="password" placeholder="Nhập lại mật khẩu" required>
+      </div>
+      <button type="submit" class="btn-submit">TẠO TÀI KHOẢN</button>
+    </form>
+
+    <a href="home.html" class="back-home">← Quay lại trang chủ</a>
+  </div>
+
+  <script src="accounts.js"></script>
+
+</body>
+</html>
