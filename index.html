@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TechZone - Cyberpunk Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-container">
+    
+    <a href="home.html" class="brand" onclick="window.location.reload()">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/864px-Tux.svg.png" alt="Logo"> 
+      <div class="brand-text">
+        <span class="brand-title">Shop<span style="color:var(--neon-red)"> Technology</span></span>
+        <span class="brand-sub">by NT-Thanh</span>
+      </div>
+    </a>
+
+    <div class="search-section">
+      <div class="search-box">
+        <input type="text" id="searchInput" class="search-input" placeholder="Tìm gì hôm nay? (iPhone, Loa,...)">
+        <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+    </div>
+
+    <div class="header-right">
+      
+      <div class="nav-icon" title="Thông báo">
+        <i class="fa-regular fa-bell"></i>
+      </div>
+
+      <div class="nav-icon" title="Giỏ hàng" onclick="alert('Xem giỏ hàng')">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-badge" id="cartCount">0</span>
+      </div>
+
+      <div class="user-zone" id="userZone">
+        <div class="auth-btns">
+            <a href="login.html" class="btn-login">Đăng nhập</a>
+            <a href="login.html" class="btn-reg">Đăng ký</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+  <section class="hero-section">
+    <div class="banner">
+      <h1>Shop Technology new year 2026</h1>
+      <p>Giảm tới 20% cho các thiết bị.</p>
+      <button style="margin-top:25px; width:180px; padding:12px; background:var(--primary); color:#fff; border:none; border-radius:50px; cursor:pointer; font-weight:bold; font-size:16px; box-shadow: 0 10px 20px rgba(255,62,62,0.3); transition:0.3s;">KHÁM PHÁ NGAY</button>
+    </div>
+  </section>
+
+  <section class="category-section">
+    <div class="cat-list">
+      <div class="cat-item"><div class="cat-icon"><i class="fa-solid fa-laptop-code"></i></div><span class="cat-name">Laptop</span></div>
+      <div class="cat-item"><div class="cat-icon"><i class="fa-solid fa-gamepad"></i></div><span class="cat-name">Gaming</span></div>
+      <div class="cat-item"><div class="cat-icon"><i class="fa-solid fa-microchip"></i></div><span class="cat-name">Linh kiện</span></div>
+      <div class="cat-item"><div class="cat-icon"><i class="fa-solid fa-mobile-screen-button"></i></div><span class="cat-name">Mobile</span></div>
+      <div class="cat-item"><div class="cat-icon"><i class="fa-solid fa-headphones-simple"></i></div><span class="cat-name">Âm thanh</span></div>
+      <div class="cat-item"><div class="cat-icon"><i class="fa-solid fa-robot"></i></div><span class="cat-name">IoT/AI</span></div>
+    </div>
+  </section>
+
+  <div class="section-title">
+    <h2>Xu hướng hôm nay</h2>
+    <i class="fa-solid fa-fire fire-icon"></i>
+  </div>
+
+  <main class="product-grid" id="productGrid">
+    </main>
+
+  <div style="text-align:center; margin-bottom:60px;">
+    <button onclick="window.location.reload()" style="background:var(--glass-bg-light); color:#fff; padding:12px 50px; border:1px solid var(--glass-border); cursor:pointer; border-radius:50px; font-weight:600; backdrop-filter:blur(5px); transition:0.3s;">
+      Xem thêm sản phẩm <i class="fa-solid fa-chevron-down" style="margin-left:10px; font-size:12px;"></i>
+    </button>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">© 2025 TechZone - Cyberpunk Commerce Experience</div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Hàm reload khi bấm logo
+    function reloadFeed(e) {
+      e.preventDefault();
+      window.location.reload();
+    }
+
+    // DỮ LIỆU MẪU & HÀM RENDER (GIỮ NGUYÊN LOGIC CŨ CỦA BẠN)
+    const staticProducts = [
+      {id: 's1', title: 'Raspberry Pi 5 Model B 8GB', price: 1890000, img: 'https://www.flatpanelshd.com/pictures/raspberrypi5_1_large.jpg', sold: '1.2k'},
+      {id: 's2', title: 'Keychron K2 Pro Mechanical Keyboard', price: 2490000, img: 'https://m.media-amazon.com/images/I/71J1S4mkZYL.jpg', sold: '850'},
+      {id: 's3', title: 'Logitech G Pro X Superlight 2', price: 3200000, img: 'https://resource.logitechg.com/w_692,c_lpad,ar_4:3,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-superlight/pro-x-superlight-black-gallery-1.png?v=1', sold: '2.1k'},
+      {id: 's4', title: 'Sony WH-1000XM5 Noise Canceling', price: 8490000, img: 'https://m.media-amazon.com/images/I/51SKmu2G9FL._AC_UF894,1000_QL80_.jpg', sold: '430'},
+      {id: 's5', title: 'ASUS ROG Swift OLED PG27AQDM', price: 24500000, img: 'https://dlcdnwebimgs.asus.com/gain/9233c873-6734-4169-9261-1b3d479bb278/', sold: '120'},
+      {id: 's6', title: 'Flipper Zero Multi-tool', price: 5585000, img: 'https://cdn.shopify.com/s/files/1/0604/8330/5667/products/FlipperZero_standard_1.jpg?v=1657196603', sold: '3.5k'}
+    ];
+
+    function renderProductCardNew(product, container) {
+      const art = document.createElement('article');
+      art.className = 'card';
+      art.innerHTML = `
+        <div class="sale-tag">HOT</div>
+        <div class="card-image">
+          <img src="${product.img}" alt="${product.title}">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">${product.title}</h3>
+          <p class="card-price">₫${Number(product.price).toLocaleString('vi-VN')}</p>
+          <p class="sold-count"><i class="fa-solid fa-star"></i> Đã bán ${product.sold || '0'}</p>
+        </div>
+        <div class="action-row">
+          <button class="btn-action btn-buy"><i class="fa-solid fa-bolt"></i> Mua Ngay</button>
+          <button class="btn-action btn-cart"><i class="fa-solid fa-cart-plus"></i> Thêm Giỏ</button>
+        </div>
+      `;
+      container.appendChild(art);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.getElementById('productGrid');
+      const shuffled = staticProducts.sort(() => 0.5 - Math.random());
+      shuffled.forEach(p => renderProductCardNew(p, grid));
+      
+      // Load sản phẩm từ local storage nếu có
+      const userProducts = JSON.parse(localStorage.getItem('webshop_products_v1') || '[]');
+      userProducts.forEach(p => renderProductCardNew(p, grid));
+    });
+  </script>
+</body>
+</html>
